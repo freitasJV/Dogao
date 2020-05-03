@@ -19,36 +19,47 @@ namespace Dogao
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Digite o código do item e sua quantidade separados por espaços:");
-            string[] entrada = Console.ReadLine().Split(' ');
-
-            int cod = int.Parse(entrada[0]);
-            int qtde = int.Parse(entrada[1]);
-            double total;
-
-            switch (cod)
+            try
             {
-                case 1:
-                    total = qtde * 4.00;
-                    break;
-                case 2:
-                    total = qtde * 4.50;
-                    break;
-                case 3:
-                    total = qtde * 5.00;
-                    break;
-                case 4:
-                    total = qtde * 2.00;
-                    break;
-                case 5:
-                    total = qtde * 1.50;
-                    break;
-                default:
-                    total = 0;
-                    break;
-            }
+                Console.WriteLine("Digite o código do item e sua quantidade separados por espaços:");
+                string[] entrada = Console.ReadLine().Split(' ');
 
-            Console.WriteLine($"Total a pagar: R$ {total.ToString("F2",CultureInfo.InvariantCulture)}");
+                int cod = int.Parse(entrada[0]);
+                int qtde = int.Parse(entrada[1]);
+                double total;
+
+                switch (cod)
+                {
+                    case 1:
+                        total = qtde * 4.00;
+                        break;
+                    case 2:
+                        total = qtde * 4.50;
+                        break;
+                    case 3:
+                        total = qtde * 5.00;
+                        break;
+                    case 4:
+                        total = qtde * 2.00;
+                        break;
+                    case 5:
+                        total = qtde * 1.50;
+                        break;
+                    default:
+                        total = 0;
+                        break;
+                }
+
+                Console.WriteLine($"Total a pagar: R$ {total.ToString("F2", CultureInfo.InvariantCulture)}");
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine($"Erro de formatação: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Erro inesperado: {e.Message}");
+            }
         }
     }
 }
